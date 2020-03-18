@@ -1,0 +1,11 @@
+[
+  {
+    "identifier": "CheckoutStepper::StepperWidget",
+    "label": "Widget.checkoutStepperLabel",
+    "previewImage": "",
+    "type": "static",
+    "categories": [],
+    "widgetClass": "CheckoutStepper\\Widgets\\StepperWidget",
+    "settings": {}
+  }
+]
