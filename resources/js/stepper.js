@@ -1,4 +1,4 @@
-
+import '../css/stepper.scss'
 
 Vue.component("stepper-widget", {
     template: `<div class="stepper-component"></div>`,
@@ -8,7 +8,7 @@ Vue.component("stepper-widget", {
             required: true,
         }
     },
-    
+
 });
 
 Vue.component("step", {

@@ -12,7 +12,17 @@
         "isList": "[1,]",
         "defaultValue": "",
         "options": {
-          "name": "Widget.stepName"
+          "name": "Widget.stepListEntryLabel"
+        },
+        "children": {
+          "text": {
+            "type": "text",
+            "required": false,
+            "options": {
+              "name": "Widget.stepListEntryNameLabel",
+              "tooltip": "Widget.stepListEntryNameTooltip"
+            }
+          }
         }
       }
     }
