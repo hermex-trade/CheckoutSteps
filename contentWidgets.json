@@ -1,11 +1,20 @@
 [
   {
     "identifier": "CheckoutStepper::StepperWidget",
-    "label": "Widget.checkoutStepperLabel",
+    "label": "Widget.stepperLabel",
     "previewImage": "",
     "type": "static",
     "categories": [],
     "widgetClass": "CheckoutStepper\\Widgets\\StepperWidget",
-    "settings": {}
+    "settings": {
+      "steps": {
+        "type": "text",
+        "isList": "[1,]",
+        "defaultValue": "",
+        "options": {
+          "name": "Widget.stepName"
+        }
+      }
+    }
   }
 ]

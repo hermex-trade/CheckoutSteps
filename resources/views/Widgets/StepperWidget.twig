@@ -1,8 +1,7 @@
-<div class="container col-12">
-    <ul class="progressbar">
-        <li class="active">Lieferung</li>
-        <li>Zahlung</li>
-        <li>Rechungsaddresse</li>
-        <li>Abschluss</li>
-    </ul>
-</div>
+{% if steps is not empty %}
+    <div>
+        {% for step in steps %}
+            {{step}}
+        {% endfor %}
+    </div>
+{% endif %}

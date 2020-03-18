@@ -9,7 +9,7 @@
   "authorIcon"        : "",
   "email"             : "nicolas.almy@gmail.com",
   "phone"             : "",
-  "serviceProvider"   : "Checkout\\Providers\\StepperServiceProvider",
+  "serviceProvider"   : "CheckoutStepper\\Providers\\StepperServiceProvider",
   "containers"        : [],
   "dataProviders"     : [],
   "javaScriptFiles"   : [],
