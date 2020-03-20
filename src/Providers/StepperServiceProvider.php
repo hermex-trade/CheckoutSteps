@@ -22,7 +22,7 @@ class StepperServiceProvider extends TemplateServiceProvider {
         $eventDispatcher->listen('IO.Resources.Import', function (ResourceContainer $container)
         {
             $container->addScriptTemplate('CheckoutStepper::Content.Scripts');
-        }, 1);
+        }, 0);
     }
 }
 

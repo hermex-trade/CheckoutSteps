@@ -1,31 +1,25 @@
-import '../css/stepper.scss'
+import Vue from "vue";
 
 Vue.component("stepper-widget", {
-    template: `<div class="stepper-component"></div>`,
     props: {
-        steps: {
-            type: Array,
-            required: true,
-        },
-        activeStepIndex: {
-            type: Number,
-            default: 0,
-            required: true,
-        }
+        steps: Array,
+        activeStepIndex: { type: Number, default: 0 },
+        template: String
     },
-
+    computed: {},
     methods: {
         nextStep() {
-            const nextIndex = activeStepIndex + 1;
-            setActiveStep(nextIndex);
+            const nextIndex = this.activeStepIndex + 1;
+            this.setActiveStep(nextIndex);
         },
         prevStep() {
-            const prevIndex = activeStepIndex - 1;
-            setActiveStep(prevIndex);
+            const prevIndex = this.activeStepIndex - 1;
+            this.setActiveStep(prevIndex);
         },
-        setActiveStep(stepIndex) {
-
+        setActiveStep(index) {
+            this.activeStepIndex = index;
         }
     }
-
 });
+
+

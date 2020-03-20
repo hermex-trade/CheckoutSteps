@@ -1,0 +1,9 @@
+<script type="x/template" id="vue-stepper">
+    <ul class="stepper">
+        <li v-for="step in steps" class="step" v-text="{{ step.title }}"></li>
+    </ul>
+    <div v-for="step in steps" class="my-4 step-container" data-builder-child-container="{{ step.uuid }}">{{ children[step.uuid] | raw }}
+        <button type="button" v-on:click="nextStep" class="btn btn-primary">Weiter</button>
+        <button type="button" v-on:click="prevStep" class="btn btn-primary">Zurück</button>
+    </div>
+</script>

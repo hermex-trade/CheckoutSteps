@@ -1,27 +1,27 @@
 {% import "Ceres::Widgets.Helper.WidgetHelper" as WidgetHelper %}
-{% set steps = widget.settings.steps.mobile %}
+{% import "Ceres::Widgets.Helper.TwigBuilder" as Twig %}
 
-{#
+{{ Twig.component("CheckoutStepper::Stepper.Components.Stepper") }}
+
+{% set steps = widget.settings.steps.mobile %}
 {% if steps is not empty %}
+    {% if isPreview %}
     <div>
-        <ul>
-            {% for step in steps %}
-                <li>{{step.title}}</li>
-            {% endfor %}
-        </ul>
+        <div class="container col-12">
+            <ul class="stepperbar">
+                {% for step in steps %}
+                    <li>{{step.title}}</li>
+                {% endfor %}
+            </ul>
+        </div>
         {% for step in steps %}
             <div class="my-4" data-builder-child-container="{{ step.uuid }}">{{ children[step.uuid] | raw }}</div>
+            <button type="button" class="btn btn-primary">Weiter</button>
+            <button type="button" class="btn btn-primary">Zurück</button>
         {% endfor %}
     </div>
+    {% else %}
+        <stepper-widget template="#vue-stepper" steps="{{ steps }}"></stepper-widget>
+    {% endif %}
+
 {% endif %}
-#}
-
-
-<stepper-widget steps="{{ steps }}">
-    <ul>
-        <li v-for="step in steps">step.title</li>
-    </ul>
-    {% for step in steps %}
-        <div class="my-4" data-builder-child-container="{{ step.uuid }}">{{ children[step.uuid] | raw }}</div>
-    {% endfor %}
-</stepper-widget>
