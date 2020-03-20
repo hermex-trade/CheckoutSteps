@@ -6,21 +6,26 @@ Vue.component("stepper-widget", {
         steps: {
             type: Array,
             required: true,
+        },
+        activeStepIndex: {
+            type: Number,
+            default: 0,
+            required: true,
         }
     },
 
-});
-
-Vue.component("step", {
-    template: `<li class="step"></li>`,
-    props: {
-        index: {
-            type: Number,
-            required: true,
+    methods: {
+        nextStep() {
+            const nextIndex = activeStepIndex + 1;
+            setActiveStep(nextIndex);
         },
-        isActive: {
-            type: Boolean,
-            required:true,
+        prevStep() {
+            const prevIndex = activeStepIndex - 1;
+            setActiveStep(prevIndex);
+        },
+        setActiveStep(stepIndex) {
+
         }
     }
+
 });

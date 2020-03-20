@@ -2,7 +2,7 @@
   "name"              : "CheckoutStepper",
   "namespace"         : "CheckoutStepper",
   "type"              : "widgets",
-  "version"           : "0.0.1",
+  "version"           : "0.0.2",
   "pluginIcon"        : "",
   "description"       : "A Plenty-Markets Plugin.",
   "author"            : "Nicolas Andrea Almy - Hermex Trade",

@@ -1,9 +1,27 @@
+{% import "Ceres::Widgets.Helper.WidgetHelper" as WidgetHelper %}
+{% set steps = widget.settings.steps.mobile %}
+
+{#
 {% if steps is not empty %}
     <div>
         <ul>
-        {% for step in steps %}
-            {{step}}
-        {% endfor %}
+            {% for step in steps %}
+                <li>{{step.title}}</li>
+            {% endfor %}
         </ul>
+        {% for step in steps %}
+            <div class="my-4" data-builder-child-container="{{ step.uuid }}">{{ children[step.uuid] | raw }}</div>
+        {% endfor %}
     </div>
 {% endif %}
+#}
+
+
+<stepper-widget steps="{{ steps }}">
+    <ul>
+        <li v-for="step in steps">step.title</li>
+    </ul>
+    {% for step in steps %}
+        <div class="my-4" data-builder-child-container="{{ step.uuid }}">{{ children[step.uuid] | raw }}</div>
+    {% endfor %}
+</stepper-widget>
