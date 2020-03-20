@@ -1,5 +1,7 @@
 import Vue from "vue";
 
+import "../css/stepper.scss"
+
 Vue.component("stepper-widget", {
     props: {
         steps: Array,
@@ -17,6 +19,9 @@ Vue.component("stepper-widget", {
             this.setActiveStep(prevIndex);
         },
         setActiveStep(index) {
+            this.activeStepIndex = index;
+        },
+        changeActiveStep(index) {
             this.activeStepIndex = index;
         }
     }
