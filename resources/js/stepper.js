@@ -5,6 +5,7 @@ import "../css/stepper.scss"
 Vue.component('stepper-widget', {
     props: {
         steps: Array,
+        childContainers: Array,
         activeStepIndex: { type: Number, default: 0 },
         template: String
     },

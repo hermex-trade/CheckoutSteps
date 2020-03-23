@@ -6,7 +6,7 @@
 {% set steps = widget.settings.steps.mobile %}
 {% if steps is not empty %}
     <div>
-        <stepper-widget template="#vue-stepper" steps="{{ steps | json_encode }}">
+        <stepper-widget template="#vue-stepper" steps="{{ steps | json_encode }}" childContainers="{{ children | raw }}">
         </stepper-widget>
     </div>
 {% endif %}
