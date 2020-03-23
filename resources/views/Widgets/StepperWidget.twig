@@ -5,8 +5,19 @@
 
 {% set steps = widget.settings.steps.mobile %}
 {% if steps is not empty %}
-    <div>
-        <stepper-widget template="#vue-stepper" steps="{{ steps | json_encode }}" childContainers="{{ children | raw }}">
-        </stepper-widget>
-    </div>
+    {% if isPreview %}
+        {% if steps is not empty %}
+            <div>
+                {% for step in steps %}
+                    <h2>{{step.title}}</h2>
+                    <div class="my-4" data-builder-child-container="{{ step.uuid }}">{{ children[step.uuid] | raw }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% else %}
+        <div>
+            <stepper-widget template="#vue-stepper" steps="{{ steps | json_encode }}" childContainers="{{ children | raw }}">
+            </stepper-widget>
+        </div>
+    {% endif %}
 {% endif %}
