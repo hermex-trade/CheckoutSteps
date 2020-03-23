@@ -2,7 +2,8 @@
     <ul class="stepper">
         <li v-for="step in steps" class="step">{{ step.title }}</li>
     </ul>
-    <div v-for="step in steps" class="my-4 step-container" data-builder-child-container="{{ step.uuid }}">{{ children[step.uuid] | raw }}
+    <div v-for="step in steps" class="my-4 step-container" data-builder-child-container="{{ step.uuid }}">
+        {{ children[step.uuid] | raw }}
         <button type="button" @click="nextStep" class="btn btn-primary">Weiter</button>
         <button type="button" @click="prevStep" class="btn btn-primary">Zurück</button>
     </div>

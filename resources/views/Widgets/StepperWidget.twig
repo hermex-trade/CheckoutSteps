@@ -5,25 +5,8 @@
 
 {% set steps = widget.settings.steps.mobile %}
 {% if steps is not empty %}
-    {% if isPreview %}
-        <div>
-            <div class="col-12">
-                <ul>
-                    {% for step in steps %}
-                        <li>{{step.title}}</li>
-                    {% endfor %}
-                </ul>
-            </div>
-            {% for step in steps %}
-                <div class="my-4" data-builder-child-container="{{ step.uuid }}">{{ children[step.uuid] | raw }}</div>
-                <button type="button" class="btn btn-primary">Weiter</button>
-                <button type="button" class="btn btn-primary">Zurück</button>
-            {% endfor %}
-        </div>
-    {% else %}
-        {{ Twig.do("verbatim") }}
-            {#<stepper-widget template="#vue-stepper" steps="{{ steps | json_encode }}"></stepper-widget>#}
-        {{ Twig.do("endverbatim") }}
-    {% endif %}
-
+    <div>
+        <stepper-widget template="#vue-stepper" steps="{{ steps | json_encode }}">
+        </stepper-widget>
+    </div>
 {% endif %}
