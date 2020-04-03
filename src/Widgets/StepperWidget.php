@@ -5,12 +5,39 @@ namespace CheckoutStepper\Widgets;
 use Ceres\Widgets\Helper\BaseWidget;
 use Ceres\Widgets\Helper\Factories\WidgetDataFactory;
 use Ceres\Widgets\Helper\Factories\WidgetSettingsFactory;
-use Ceres\Widgets\Helper\WidgetCategories;
 use Ceres\Widgets\Helper\WidgetTypes;
 
 
 class StepperWidget extends BaseWidget {
+
     protected $template = "CheckoutStepper::Widgets.StepperWidget";
+
+    protected function getTemplateData($widgetSettings, $isPreview) 
+    {
+        $steps = $widgetSettings["steps"]["mobile"];
+        $containers = $widgetSettings["steps"]["children"]["mobile"];
+
+        if (empty($steps) || empty($containers)) 
+        {
+            return [
+                "steps_data" => false
+            ];
+        }
+
+        if ($steps && $containers) 
+        {
+            return [
+                "steps_data" => [
+                    "steps" => $steps,
+                    "containers" => $containers
+                ]
+            ];
+        }
+
+        return [
+            "steps_data" => false
+        ];
+    }
 
     public function getData() 
     {

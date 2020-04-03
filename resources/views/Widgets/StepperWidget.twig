@@ -1,23 +1,10 @@
-{% import "Ceres::Widgets.Helper.WidgetHelper" as WidgetHelper %}
-{% import "Ceres::Widgets.Helper.TwigBuilder" as Twig %}
+{% set steps_data = widget.settings.steps.mobile %}
 
-{{ Twig.component("CheckoutStepper::Stepper.Components.Stepper") }}
-
-{% set steps = widget.settings.steps.mobile %}
-{% if steps is not empty %}
-    {% if isPreview %}
-        {% if steps is not empty %}
-            <div>
-                {% for step in steps %}
-                    <h2>{{step.title}}</h2>
-                    <div class="my-4" data-builder-child-container="{{ step.uuid }}">{{ children[step.uuid] | raw }}</div>
-                {% endfor %}
-            </div>
-        {% endif %}
-    {% else %}
-        <div>
-            <stepper-widget template="#vue-stepper" steps="{{ steps | json_encode }}" childContainers="{{ children | raw }}">
-            </stepper-widget>
-        </div>
-    {% endif %}
+{% if steps_data is not empty %}
+    <div>
+        <stepper-widget class="widget widget-proportional" :steps="{{steps_data|json_encode}}"></stepper-widget> 
+    </div>
+    {% for step in steps_data %}
+        <div class="my-4" data-builder-child-container="{{ step.uuid }}">{{ children[step.uuid] | raw }}</div>
+    {% endfor %}
 {% endif %}
