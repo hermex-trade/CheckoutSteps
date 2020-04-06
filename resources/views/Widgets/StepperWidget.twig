@@ -1,10 +1,69 @@
 {% set steps_data = widget.settings.steps.mobile %}
 
 {% if steps_data is not empty %}
-    <div>
-        <stepper-widget class="widget widget-proportional" :steps="{{steps_data|json_encode}}"></stepper-widget> 
-    </div>
-    {% for step in steps_data %}
-        <div class="my-4" data-builder-child-container="{{ step.uuid }}">{{ children[step.uuid] | raw }}</div>
-    {% endfor %}
+    {% if isPreview %}
+        <div>
+            {% for step in steps_data %}
+                <h1>{{step.title}}</h1>
+                <div class="my-4" data-builder-child-container="{{step.uuid}}">{{ children[step.uuid] | raw }}</div>
+            {% endfor %}
+        </div>
+    {% else %}
+        {#
+        <div class="step-widget">
+            {% set contents = [] %}
+            {% for step in steps_data %}
+                {% set content = "<div class="my-4" data-builder-child-container="{{step.uuid}}">{{ children[step.uuid] | raw }}</div>" %}
+                {% set contents = contents|merge(content) %}
+            {% endfor %}
+            <test-widget :steps="{{steps_data|json_encode}}">
+                {% for step in steps_data %}
+                    <div class="my-4" data-builder-child-container="{{ step.uuid }}">{{ children[step.uuid] | raw }}</div>
+                {% endfor %}
+            </test-widget>
+            {#
+            <step-widget :steps="{{steps_data|json_encode}}">
+                {% for step in steps_data %}
+                    {% if loop.first %}
+                        <step-content :title="{{step.title|json_encode}}" :uuid="{{step.uuid|json_encode}}" v-bind:active="true">
+                            <div class="my-4" data-builder-child-container="{{ step.uuid }}">{{ children[step.uuid] | raw }}</div>
+                        </step-content>
+                    {% else %}
+                        <step-content class="content" :title="{{step.title|json_encode}}" :uuid="{{step.uuid|json_encode}}" v-bind:active="false">
+                            <div class="my-4" data-builder-child-container="{{ step.uuid }}">{{ children[step.uuid] | raw }}</div>
+                        </step-content>
+                    {% endif %}
+                {% endfor %}
+            </step-widget>
+        </div>#}
+        
+        <div class="step-widget">
+            <step-widget :steps="{{steps_data|json_encode}}">
+                {% for step in steps_data %}
+                    <div class="my-4" data-builder-child-container="{{ step.uuid }}">{{ children[step.uuid] | raw }}</div>
+                {% endfor %}
+            </step-widget>
+        </div>
+        {#
+        {% for step in steps_data %}
+            <div class="step-list">
+            {% if loop.first %}
+                <step-list class="step" :title="{{step.title|json_encode}}" :uuid="{{step.uuid|json_encode}}" v-bind:active="true">
+            {% else %}
+                <step-list class="step" :title="{{step.title|json_encode}}" :uuid="{{step.uuid|json_encode}}" v-bind:active="false">
+            {% endif %}
+            </div>
+        {% endfor %}
+        {% for step in steps_data %}
+            {% if loop.first %}
+                <step-content :title="{{step.title|json_encode}}" :uuid="{{step.uuid|json_encode}}" v-bind:active="true">
+                    <div class="my-4" data-builder-child-container="{{ step.uuid }}">{{ children[step.uuid] | raw }}</div>
+                </step-content>
+            {% else %}
+                <step-content class="content" :title="{{step.title|json_encode}}" :uuid="{{step.uuid|json_encode}}" v-bind:active="false">
+                    <div class="my-4" data-builder-child-container="{{ step.uuid }}">{{ children[step.uuid] | raw }}</div>
+                </step-content>
+            {% endif %}
+        {% endfor %}#}
+    {% endif %}
 {% endif %}

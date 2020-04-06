@@ -1,57 +1,94 @@
 import "../scss/stepper.scss"
 
-Vue.component("stepper-widget",
-{
-    delimiters: ["((","))"],
+Vue.component("test-widget", {
+    delimiters: ["((", "))"],
     props: ['steps', 'children'],
-    template: '<div class="stepper-navigation">' +
-        '<div class="container">' +
-            '<ul class="stepperbar">' +
-                '<li :class="isActive(step.active)" v-for="(step, index) in steps">((step.title))</li>' +
-            '</ul>' + 
-        '</div>' + 
-        '<div class="my-4 sm-12 step" :class="isActive(step.active)" v-for="(step, index) in steps">' +
-            '<h1>((step.title))</h1>' +
-            '<button v-if="index != 0" @click="prev(index)">Zurück</button>' +
-            '<button v-if="index < steps.length - 1" @click="next(index)">Weiter</button>' +
+    template: '<div>' +
+        '<div v-for="step in steps">' + 
+            '<p>((step.title))</p>' +
+            '<p>((step.active))</p>' +
+            '<p>((step.uuid))</p>' +
         '</div>' +
+    '</div>'
+});
+
+Vue.component("step-widget", {
+    delimiters: ["((", "))"],
+    props: ['steps'],
+    template: '<div>' +
+        '<div class="step-list" v-for="(step, index) in steps">' +
+            "<step-list class='step' v-if='index === 0' :title='((step.title))' :uuid='((step.uuid))' :active='true' />" +
+            "<step-list class='step' v-else :title='((step.title))' :uuid='((step.uuid))' />" +
+        '</div>' +
+        '<slot></slot>' +
+        '<button @click="prev">Zurück</button>' +
+        '<button @click="next">Weiter</button>' +
     '</div>',
-    created() {
-        this.addActiveProps();
-    },
-    methods: {
-        isActive(step) {
-            if (step === true) {
-                return "active"
-            }
-        },
-        addActiveProps() {
-            var steps = this.steps;
-            steps[0].active = true;
-            for (var i = 1; i < steps.length; i++) {
-                steps[i].active = false;
-            }
-        },
-        next(currentStepIndex) {
-            var nextIndex = currentStepIndex + 1;
-            this.switchActive(nextIndex, currentStepIndex);
-        },
-        prev(currentStepIndex) {
-            var prevIndex = currentStepIndex - 1;
-            this.switchActive(prevIndex, currentStepIndex);
-        },
-        switchActive(activeStepIndex, currentStepIndex) {
-            var steps = this.steps;
-            steps[activeStepIndex].active = true;
-            steps[currentStepIndex].active = false;
-            console.log(steps)
-        },
-        setActive(index) {
-            var steps = this.steps;
-            for (var i = 0; i < steps.length; i++) {
-                steps[i].active = false;
-            }
-            steps[index].active = true;
+    data: function() {
+        return {
+            'activeIndex': 0
         }
     },
+    methods: {
+        next() {
+            if (this.activeIndex < this.steps.length - 1) {
+                this.activeIndex += 1;
+            }
+        }, 
+        prev() {
+            if (this.activeIndex != 0) {
+                this.activeIndex -= 1;
+            }
+        },
+    }
+});
+
+Vue.component("step-list", 
+{
+    delimiters: ["((","))"],
+    template: '<div :class="{active: isActive}" @click="setActive"><p>((title))</p></div>',
+    props: {
+        title: String,
+        uuid: String, 
+        active: {
+            type: Boolean,
+            default: false,
+        }
+    },
+    data: function() {
+        return {
+            isActive: false
+        }
+    },
+    watch: {
+        active: {
+            handler(newValue) {
+                this.isActive = newValue;
+            },
+            immediate: true,
+        }
+    },
+    methods: {
+        setActive() {
+            this.$emit('isActive', this.isActive);
+        }
+    },
+});
+
+Vue.component("step-content", 
+{
+    delimiters: ["((", "))"],
+    props: {
+        title: String,
+        uuid: String, 
+        active: {
+            type: Boolean,
+            default: false,
+        },
+        content: {},
+    },
+    template: '<div class="content" :class="{active: active}">' +
+        '<h1>((title))</h1>' +
+        '<slot></slot>' +
+    '</div>'
 });
