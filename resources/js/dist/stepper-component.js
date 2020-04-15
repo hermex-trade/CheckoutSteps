@@ -97,7 +97,7 @@
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, ".step-list {\n  display: inline-block; }\n\n.clickable {\n  cursor: pointer; }\n\n.step {\n  background: gray;\n  width: 16rem;\n  height: 3rem;\n  font-size: 1.6rem;\n  text-align: center;\n  vertical-align: middle; }\n  .step.active {\n    background-color: orange; }\n  .step:hover {\n    width: calc(16rem * 1.5);\n    height: calc(3rem * 1.5); }\n\n.content {\n  display: none; }\n  .content.active {\n    display: block; }\n", ""]);
+exports.push([module.i, ".step-list {\n  display: inline-block;\n  text-align: center; }\n\n.clickable {\n  cursor: pointer; }\n\n.step {\n  background: gray;\n  border: solid 1px black;\n  width: 16rem;\n  height: 3rem;\n  font-size: 1.6rem;\n  line-height: 3rem;\n  vertical-align: middle;\n  margin: auto; }\n  .step.active {\n    background-color: orange; }\n  .step:hover {\n    width: calc(16rem * 1.5);\n    height: calc(3rem * 1.5); }\n\n.content {\n  display: none; }\n  .content.active {\n    display: block; }\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -504,20 +504,18 @@ __webpack_require__.r(__webpack_exports__);
 Vue.component("step-content", {
   props: ['index'],
   delimiters: ["((", "))"],
-  template: '<div v-if="isActiveStep">' + '<slot></slot>' + '<p>((index))</p>' + '</div>',
+  template: '<div v-if="isActiveStep">' + '<slot></slot>' + '</div>',
   computed: {
     isActiveStep: function isActiveStep() {
-      console.log("lala");
-      console.log(this.$parent.activeIndex);
       return this.$parent.activeIndex === this.index;
     }
   }
 });
-Vue.component("stepper-widget", {
+Vue.component("step-widget", {
   delimiters: ["((", "))"],
   props: ['steps'],
   component: ['step-content'],
-  template: '<div>' + '<div class="step clickable" v-for="(step, index) in steps" @click="setActive(index, $event)"><h1>((step.title))</h1></div>' + '<slot></slot>' + '<button @click="prev">Zurück</button>' + '<button @click="next">Weiter</button>' + '</div>',
+  template: '<div>' + '<div class="step-list clickable col-xs-12" v-for="(step, index) in steps" @click="setActive(index, $event)">' + '<h1 class="step" :class="isActive(index)">((step.title))</h1>' + '</div>' + '<slot></slot>' + '<button class="col-3 btn btn-primary" @click="prev">Zurück</button>' + '<button class="col-3 btn btn-primary" @click="next">Weiter</button>' + '</div>',
   data: function data() {
     return {
       'activeIndex': 0
@@ -536,31 +534,11 @@ Vue.component("stepper-widget", {
       if (this.activeIndex !== 0) {
         this.activeIndex -= 1;
       }
-    }
-  }
-});
-Vue.component("step-widget", {
-  delimiters: ["((", "))"],
-  props: ['steps'],
-  template: '<div>' + '<div class="step-list" v-for="(step, index) in steps">' + "<step-list class='step' v-if='index === activeIndex' :title='((step.title))' :uuid='((step.uuid))' :active='true' />" + "<step-list class='step' @click='setActive(index)' v-else :title='((step.title))' :uuid='((step.uuid))' />" + '</div>' + '<slot></slot>' + '<button @click="prev">Zurück</button>' + '<button @click="next">Weiter</button>' + '</div>',
-  data: function data() {
-    return {
-      'activeIndex': 0
-    };
-  },
-  methods: {
-    next: function next() {
-      if (this.activeIndex < this.steps.length - 1) {
-        this.activeIndex += 1;
-      }
     },
-    setActive: function setActive(index) {
-      thiss.activeIndex = index;
-    },
-    prev: function prev() {
-      if (this.activeIndex != 0) {
-        this.activeIndex -= 1;
-      }
+    isActive: function isActive(index) {
+      return {
+        active: this.activeIndex === index
+      };
     }
   }
 });

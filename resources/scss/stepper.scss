@@ -3,6 +3,7 @@ $step-list-entry-height: 3rem;
 
 .step-list {
   display: inline-block;
+  text-align:center;
 }
 
 .clickable {
@@ -11,11 +12,13 @@ $step-list-entry-height: 3rem;
 
 .step {
   background: gray;
+  border: solid 1px black;
   width: $step-list-entry-width;
   height: $step-list-entry-height;
   font-size: 1.6rem;
-  text-align: center;
+  line-height: 3rem;
   vertical-align: middle;
+  margin:auto;
   &.active {
     background-color: orange;
   }
