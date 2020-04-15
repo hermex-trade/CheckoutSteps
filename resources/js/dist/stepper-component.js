@@ -97,7 +97,7 @@
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, ".stepperbar li {\n  display: inline-block;\n  list-style-type: none;\n  text-transform: uppercase;\n  background: seagreen; }\n\n.stepperbar li.active {\n  padding: 1rem;\n  background: orange; }\n\n.container {\n  width: 900px;\n  margin: 100px auto; }\n\n.step {\n  display: none;\n  margin-top: 2rem; }\n  .step.active {\n    display: inline-block; }\n\n@media screen and (max-width: 768px) {\n  .stepperbar li {\n    font-size: 0.8rem; } }\n\n@media screen and (max-width: 576px) {\n  .stepperbar li {\n    font-size: 0.6rem; } }\n", ""]);
+exports.push([module.i, ".step-list {\n  display: inline-block; }\n\n.clickable {\n  cursor: pointer; }\n\n.step {\n  background: gray;\n  width: 16rem;\n  height: 3rem;\n  font-size: 1.6rem;\n  text-align: center;\n  vertical-align: middle; }\n  .step.active {\n    background-color: orange; }\n  .step:hover {\n    width: calc(16rem * 1.5);\n    height: calc(3rem * 1.5); }\n\n.content {\n  display: none; }\n  .content.active {\n    display: block; }\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -501,53 +501,66 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _scss_stepper_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../scss/stepper.scss */ "./resources/scss/stepper.scss");
 /* harmony import */ var _scss_stepper_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_scss_stepper_scss__WEBPACK_IMPORTED_MODULE_0__);
 
+Vue.component("step-content", {
+  props: ['index'],
+  delimiters: ["((", "))"],
+  template: '<div v-if="isActiveStep">' + '<slot></slot>' + '<p>((index))</p>' + '</div>',
+  computed: {
+    isActiveStep: function isActiveStep() {
+      console.log("lala");
+      console.log(this.$parent.activeIndex);
+      return this.$parent.activeIndex === this.index;
+    }
+  }
+});
 Vue.component("stepper-widget", {
   delimiters: ["((", "))"],
-  props: {
-    steps: Array
-  },
-  template: '<div class="stepper-navigation">' + '<div class="container">' + '<ul class="stepperbar">' + '<li :class="isActive(step.active)" v-for="(step, index) in steps">((step.title))</li>' + '</ul>' + '</div>' + '<div class="my-4 sm-12 step" :class="isActive(step.active)" v-for="(step, index) in steps">' + '<h1>((step.title))</h1>' + '<div class="widget my-4"></div>' + '<button v-if="index != 0" @click="prev(index)">Zurück</button>' + '<button v-if="index < steps.length - 1" @click="next(index)">Weiter</button>' + '</div>' + '</div>',
-  created: function created() {
-    this.addActiveProps();
-  },
-  watch: {
-    isActive: function isActive(step) {
-      if (step === true) {
-        return "active";
-      }
-    }
+  props: ['steps'],
+  component: ['step-content'],
+  template: '<div>' + '<div class="step clickable" v-for="(step, index) in steps" @click="setActive(index, $event)"><h1>((step.title))</h1></div>' + '<slot></slot>' + '<button @click="prev">Zurück</button>' + '<button @click="next">Weiter</button>' + '</div>',
+  data: function data() {
+    return {
+      'activeIndex': 0
+    };
   },
   methods: {
-    addActiveProps: function addActiveProps() {
-      var steps = this.steps;
-      steps[0].active = true;
-
-      for (var i = 1; i < steps.length; i++) {
-        steps[i].active = false;
+    next: function next() {
+      if (this.activeIndex !== this.steps.length - 1) {
+        this.activeIndex += 1;
       }
-    },
-    next: function next(currentStepIndex) {
-      var nextIndex = currentStepIndex + 1;
-      this.switchActive(nextIndex, currentStepIndex);
-    },
-    prev: function prev(currentStepIndex) {
-      var prevIndex = currentStepIndex - 1;
-      this.switchActive(prevIndex, currentStepIndex);
-    },
-    switchActive: function switchActive(activeStepIndex, currentStepIndex) {
-      var steps = this.steps;
-      steps[activeStepIndex].active = true;
-      steps[currentStepIndex].active = false;
-      console.log(steps);
     },
     setActive: function setActive(index) {
-      var steps = this.steps;
-
-      for (var i = 0; i < steps.length; i++) {
-        steps[i].active = false;
+      this.activeIndex = index;
+    },
+    prev: function prev() {
+      if (this.activeIndex !== 0) {
+        this.activeIndex -= 1;
       }
-
-      steps[index].active = true;
+    }
+  }
+});
+Vue.component("step-widget", {
+  delimiters: ["((", "))"],
+  props: ['steps'],
+  template: '<div>' + '<div class="step-list" v-for="(step, index) in steps">' + "<step-list class='step' v-if='index === activeIndex' :title='((step.title))' :uuid='((step.uuid))' :active='true' />" + "<step-list class='step' @click='setActive(index)' v-else :title='((step.title))' :uuid='((step.uuid))' />" + '</div>' + '<slot></slot>' + '<button @click="prev">Zurück</button>' + '<button @click="next">Weiter</button>' + '</div>',
+  data: function data() {
+    return {
+      'activeIndex': 0
+    };
+  },
+  methods: {
+    next: function next() {
+      if (this.activeIndex < this.steps.length - 1) {
+        this.activeIndex += 1;
+      }
+    },
+    setActive: function setActive(index) {
+      thiss.activeIndex = index;
+    },
+    prev: function prev() {
+      if (this.activeIndex != 0) {
+        this.activeIndex -= 1;
+      }
     }
   }
 });

@@ -38,11 +38,13 @@
         </div>#}
         
         <div class="step-widget">
-            <step-widget :steps="{{steps_data|json_encode}}">
+            <stepper-widget :steps="{{steps_data|json_encode}}">
                 {% for step in steps_data %}
-                    <div class="my-4" data-builder-child-container="{{ step.uuid }}">{{ children[step.uuid] | raw }}</div>
+                    <step-content :index="{{ loop.index0 }}">
+                        <div class="my-4" data-builder-child-container="{{step.uuid}}">{{ children[step.uuid] | raw }}</div>
+                    </step-content>
                 {% endfor %}
-            </step-widget>
+            </stepper-widget>
         </div>
         {#
         {% for step in steps_data %}
