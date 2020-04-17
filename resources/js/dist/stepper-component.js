@@ -86,10 +86,10 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./resources/scss/stepper.scss":
-/*!******************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./resources/scss/stepper.scss ***!
-  \******************************************************************************************************************/
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./resources/scss/steps.scss":
+/*!****************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./resources/scss/steps.scss ***!
+  \****************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -97,7 +97,7 @@
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, ".step-list {\n  display: inline-block;\n  text-align: center; }\n\n.clickable {\n  cursor: pointer; }\n\n.step {\n  background: gray;\n  border: solid 1px black;\n  width: 16rem;\n  height: 3rem;\n  font-size: 1.6rem;\n  line-height: 3rem;\n  vertical-align: middle;\n  margin: auto; }\n  .step.active {\n    background-color: orange; }\n  .step:hover {\n    width: calc(16rem * 1.5);\n    height: calc(3rem * 1.5); }\n\n.content {\n  display: none; }\n  .content.active {\n    display: block; }\n", ""]);
+exports.push([module.i, ".step {\n  background: gray;\n  font-size: 1.6rem;\n  line-height: 3rem;\n  text-align: center;\n  vertical-align: middle;\n  display: inline-block; }\n  .step:not(.mobile):hover {\n    transform: scale(1, 1.2);\n    cursor: pointer;\n    background-color: orange; }\n  .step.active {\n    background-color: orange; }\n\n@media only screen and (min-width: 992px) {\n  .step:not(:last-child) {\n    border-right: 2px solid black; } }\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -498,30 +498,28 @@ module.exports = function (list, options) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _scss_stepper_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../scss/stepper.scss */ "./resources/scss/stepper.scss");
-/* harmony import */ var _scss_stepper_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_scss_stepper_scss__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _scss_steps_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../scss/steps.scss */ "./resources/scss/steps.scss");
+/* harmony import */ var _scss_steps_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_scss_steps_scss__WEBPACK_IMPORTED_MODULE_0__);
 
-Vue.component("step-content", {
-  props: ['index'],
-  delimiters: ["((", "))"],
-  template: '<div v-if="isActiveStep">' + '<slot></slot>' + '</div>',
-  computed: {
-    isActiveStep: function isActiveStep() {
-      return this.$parent.activeIndex === this.index;
-    }
-  }
-});
-Vue.component("step-widget", {
+Vue.component("steps-widget", {
   delimiters: ["((", "))"],
   props: ['steps'],
   component: ['step-content'],
-  template: '<div>' + '<div class="step-list clickable col-xs-12" v-for="(step, index) in steps" @click="setActive(index, $event)">' + '<h1 class="step" :class="isActive(index)">((step.title))</h1>' + '</div>' + '<slot></slot>' + '<button class="col-3 btn btn-primary" @click="prev">Zurück</button>' + '<button class="col-3 btn btn-primary" @click="next">Weiter</button>' + '</div>',
+  template: '<div>' + '<div v-if="!isMobile()" class="step-list col-12">' + '<h1 class="step col-lg-3" v-for="(step, index) in steps" @click="setActive(index, $event)" :class="isActive(index)">((step.title))</h1>' + '</div>' + '<div v-else class="step-list col-12">' + '<h1 v-if="activeIndex === index" class="step mobile col-lg-12" v-for="(step, index) in steps" @click="setActive(index, $event)" :class="isActive(index)">((step.title))</h1>' + '</div>' + '<slot></slot>' + '<button v-if="activeIndex !== 0" class="col-3 btn btn-primary mr-1" @click="prev">Zurück</button>' + '<button v-if="activeIndex !== steps.length - 1"class="col-3 btn btn-primary" @click="next">Weiter</button>' + '</div>',
   data: function data() {
     return {
-      'activeIndex': 0
+      'activeIndex': 0,
+      'width': window.innerWidth
     };
   },
   methods: {
+    isMobile: function isMobile() {
+      if (this.width <= 768) {
+        return true;
+      } else {
+        return false;
+      }
+    },
     next: function next() {
       if (this.activeIndex !== this.steps.length - 1) {
         this.activeIndex += 1;
@@ -536,24 +534,35 @@ Vue.component("step-widget", {
       }
     },
     isActive: function isActive(index) {
+      console.log("called is active");
       return {
         active: this.activeIndex === index
       };
     }
   }
 });
+Vue.component("step-content", {
+  props: ['index'],
+  delimiters: ["((", "))"],
+  template: '<div v-if="isActiveStep">' + '<slot></slot>' + '</div>',
+  computed: {
+    isActiveStep: function isActiveStep() {
+      return this.$parent.activeIndex === this.index;
+    }
+  }
+});
 
 /***/ }),
 
-/***/ "./resources/scss/stepper.scss":
-/*!*************************************!*\
-  !*** ./resources/scss/stepper.scss ***!
-  \*************************************/
+/***/ "./resources/scss/steps.scss":
+/*!***********************************!*\
+  !*** ./resources/scss/steps.scss ***!
+  \***********************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 var api = __webpack_require__(/*! ../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
-            var content = __webpack_require__(/*! !../../node_modules/css-loader/dist/cjs.js!../../node_modules/sass-loader/dist/cjs.js!./stepper.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./resources/scss/stepper.scss");
+            var content = __webpack_require__(/*! !../../node_modules/css-loader/dist/cjs.js!../../node_modules/sass-loader/dist/cjs.js!./steps.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./resources/scss/steps.scss");
 
             content = content.__esModule ? content.default : content;
 

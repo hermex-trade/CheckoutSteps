@@ -1,0 +1,27 @@
+.step {
+  background: gray;
+  font-size: 1.6rem;
+  line-height: 3rem;
+  text-align: center;
+  vertical-align: middle;
+  display: inline-block;
+  &:not(.mobile) {
+    &:hover {
+      transform: scale(1.0, 1.2);
+      cursor: pointer;
+      background-color: orange;
+    }
+  }
+  &.active {
+    background-color: orange;
+  }
+
+}
+
+@media only screen and (min-width: 992px) {
+  .step {
+    &:not(:last-child) {
+      border-right: 2px solid black;
+    }
+  }  
+}

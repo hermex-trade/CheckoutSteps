@@ -1,36 +1,34 @@
-import "../scss/stepper.scss"
+import "../scss/steps.scss"
 
-Vue.component("step-content", {
-    props: ['index'],
-    delimiters: ["((", "))"],
-    template: '<div v-if="isActiveStep">' +
-        '<slot></slot>' +
-    '</div>',
-    computed: {
-        isActiveStep() {
-            return this.$parent.activeIndex === this.index
-        }
-    }
-})
-
-Vue.component("step-widget", {
+Vue.component("steps-widget", {
     delimiters: ["((", "))"],
     props: ['steps'],
     component: ['step-content'],
     template: '<div>' +
-        '<div class="step-list clickable col-xs-12" v-for="(step, index) in steps" @click="setActive(index, $event)">' +
-            '<h1 class="step" :class="isActive(index)">((step.title))</h1>' +
-        '</div>' +
+        '<div v-if="!isMobile()" class="step-list col-12">' +
+            '<h1 class="step col-lg-3" v-for="(step, index) in steps" @click="setActive(index, $event)" :class="isActive(index)">((step.title))</h1>' +
+        '</div>' + 
+        '<div v-else class="step-list col-12">' +
+            '<h1 v-if="activeIndex === index" class="step mobile col-lg-12" v-for="(step, index) in steps" @click="setActive(index, $event)" :class="isActive(index)">((step.title))</h1>' +
+        '</div>' + 
         '<slot></slot>' +
-        '<button class="col-3 btn btn-primary" @click="prev">Zurück</button>' +
-        '<button class="col-3 btn btn-primary" @click="next">Weiter</button>' +
+        '<button v-if="activeIndex !== 0" class="col-3 btn btn-primary mr-1" @click="prev">Zurück</button>' +
+        '<button v-if="activeIndex !== steps.length - 1"class="col-3 btn btn-primary" @click="next">Weiter</button>' +
     '</div>',
     data: function() {
         return {
-            'activeIndex': 0
+            'activeIndex': 0,
+            'width': window.innerWidth
         }
     },
     methods: {
+        isMobile() {
+            if (this.width <= 768) {
+                return true;
+            } else {
+                return false;
+            }
+        },
         next() {
             if (this.activeIndex !== this.steps.length - 1) {
                 this.activeIndex +=1
@@ -45,9 +43,23 @@ Vue.component("step-widget", {
             }
         },
         isActive: function(index) {
+            console.log("called is active")
             return {
                 active: this.activeIndex === index
             }
         }
     }
 });
+
+Vue.component("step-content", {
+    props: ['index'],
+    delimiters: ["((", "))"],
+    template: '<div v-if="isActiveStep">' +
+        '<slot></slot>' +
+    '</div>',
+    computed: {
+        isActiveStep() {
+            return this.$parent.activeIndex === this.index
+        }
+    }
+})
