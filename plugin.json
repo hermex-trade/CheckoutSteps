@@ -1,6 +1,6 @@
 {
-  "name"              : "CheckoutStepper",
-  "namespace"         : "CheckoutStepper",
+  "name"              : "CheckoutSteps",
+  "namespace"         : "CheckoutSteps",
   "type"              : "widgets",
   "version"           : "0.0.2",
   "pluginIcon"        : "",
@@ -9,7 +9,7 @@
   "authorIcon"        : "",
   "email"             : "nicolas.almy@gmail.com",
   "phone"             : "",
-  "serviceProvider"   : "CheckoutStepper\\Providers\\StepperServiceProvider",
+  "serviceProvider"   : "CheckoutSteps\\Providers\\StepsServiceProvider",
   "containers"        : [],
   "dataProviders"     : [],
   "javaScriptFiles"   : [],

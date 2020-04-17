@@ -1,15 +1,15 @@
 <?php
 
-namespace CheckoutStepper\Providers;
+namespace CheckoutSteps\Providers;
 
-use CheckoutStepper\Widgets\StepperWidget;
+use CheckoutSteps\Widgets\StepsWidget;
 use IO\Helper\ResourceContainer;
 use Plenty\Plugin\Events\Dispatcher;
 use Plenty\Plugin\ServiceProvider;
 use Plenty\Plugin\Templates\Twig;
 use Plenty\Modules\ShopBuilder\Contracts\ContentWidgetRepositoryContract;
 
-class StepperServiceProvider extends ServiceProvider {
+class StepsServiceProvider extends ServiceProvider {
 
     public function register()
     {
@@ -18,11 +18,11 @@ class StepperServiceProvider extends ServiceProvider {
     public function boot(Twig $twig, Dispatcher $eventDispatcher)
     {
         $widgetRepository = pluginApp(ContentWidgetRepositoryContract::class);
-        $widgetRepository->registerWidget(StepperWidget::class);
+        $widgetRepository->registerWidget(StepsWidget::class);
 
         $eventDispatcher->listen('IO.Resources.Import', function (ResourceContainer $container)
         {
-            $container->addScriptTemplate('CheckoutStepper::Content.Scripts');
+            $container->addScriptTemplate('CheckoutSteps::Content.Scripts');
         }, 0);
     }
 }

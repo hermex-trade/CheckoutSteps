@@ -1,6 +1,6 @@
 <?php
 
-namespace CheckoutStepper\Widgets;
+namespace CheckoutSteps\Widgets;
 
 use Ceres\Widgets\Helper\BaseWidget;
 use Ceres\Widgets\Helper\Factories\WidgetDataFactory;
@@ -8,9 +8,9 @@ use Ceres\Widgets\Helper\Factories\WidgetSettingsFactory;
 use Ceres\Widgets\Helper\WidgetTypes;
 
 
-class StepperWidget extends BaseWidget {
+class StepsWidget extends BaseWidget {
 
-    protected $template = "CheckoutStepper::Widgets.StepperWidget";
+    protected $template = "CheckoutSteps::Widgets.StepsWidget";
 
     protected function getTemplateData($widgetSettings, $isPreview) 
     {
@@ -41,9 +41,9 @@ class StepperWidget extends BaseWidget {
 
     public function getData() 
     {
-        return WidgetDataFactory::make("CheckoutStepper::StepperWidget")
-            ->withLabel("Widget.stepperLabel")
-            ->withPreviewImageUrl("/images/widgets/stepper.svg")
+        return WidgetDataFactory::make("CheckoutSteps::StepsWidget")
+            ->withLabel("Widget.stepsLabel")
+            ->withPreviewImageUrl("/images/widgets/steps.svg")
             ->withMaxPerPage(1)
             ->withType(WidgetTypes::STATIC)
             ->toArray();
@@ -55,11 +55,11 @@ class StepperWidget extends BaseWidget {
 
         $container = $settings->createVerticalContainer("steps")
             ->withList(1)
-            ->withName("Widget.stepperNewStepLabel");
+            ->withName("Widget.stepsNewStepLabel");
 
         $container->children->createText("title")
-            ->withName("Widget.stepperNewStepInputName")
-            ->withToolTip("Widget.stepperNewStepInputTooltip");
+            ->withName("Widget.stepsNewStepInputName")
+            ->withToolTip("Widget.stepsNewStepInputTooltip");
 
         $container->children->createUUID("uuid");
 

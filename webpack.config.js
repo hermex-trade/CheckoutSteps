@@ -5,9 +5,9 @@ module.exports = (env) => {
     env = env || {};
 
     return {
-        entry: './resources/js/stepper.js',
+        entry: './resources/js/steps.js',
         output: {
-            filename: "stepper-component" + (env.prod ? "-min" : "") + ".js",
+            filename: "steps-component" + (env.prod ? "-min" : "") + ".js",
             path: path.resolve(__dirname, './resources/js/dist')
         },
         mode: env.prod ? "production" : "development",

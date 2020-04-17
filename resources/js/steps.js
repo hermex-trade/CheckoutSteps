@@ -13,7 +13,7 @@ Vue.component("steps-widget", {
         '</div>' + 
         '<slot></slot>' +
         '<button v-if="activeIndex !== 0" class="col-3 btn btn-primary mr-1" @click="prev">Zurück</button>' +
-        '<button v-if="activeIndex !== steps.length - 1"class="col-3 btn btn-primary" @click="next">Weiter</button>' +
+        '<button v-if="activeIndex !== steps.length - 1" class="col-3 btn btn-primary" @click="next">Weiter</button>' +
     '</div>',
     data: function() {
         return {
