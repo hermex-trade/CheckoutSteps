@@ -5,7 +5,7 @@ Vue.component("steps-widget", {
     props: ['steps'],
     component: ['step-content'],
     template: '<div>' +
-        '<div v-if="!isMobile()" class="step-list col-12">' +
+        '<div v-if="!isMobile()" v-on class="step-list col-12">' +
             '<h1 class="step col-lg-3" v-for="(step, index) in steps" @click="setActive(index, $event)" :class="isActive(index)">((step.title))</h1>' +
         '</div>' + 
         '<div v-else class="step-list col-12">' +
@@ -21,7 +21,16 @@ Vue.component("steps-widget", {
             'width': window.innerWidth
         }
     },
+    mounted: function() {
+        window.addEventListener('resize', this.handleResize)
+    }, 
+    beforeDestroy: function() {
+        window.addEventListener('resize', this.handleResize)
+    },
     methods: {
+        handleResize(event) {
+            this.width = event.currentTarget.innerWidth
+        },
         isMobile() {
             if (this.width <= 768) {
                 return true;
