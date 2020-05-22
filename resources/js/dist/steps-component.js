@@ -97,7 +97,7 @@
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, ".step {\n  background: gray;\n  font-size: 1.6rem;\n  line-height: 3rem;\n  text-align: center;\n  vertical-align: middle;\n  display: inline-block; }\n  .step:not(.mobile):hover {\n    transform: scale(1, 1.2);\n    cursor: pointer;\n    background-color: orange; }\n  .step.active {\n    background-color: orange; }\n\n@media only screen and (min-width: 992px) {\n  .step:not(:last-child) {\n    border-right: 2px solid black; } }\n", ""]);
+exports.push([module.i, ".step {\n  background: black;\n  font-size: 1.6rem;\n  color: white;\n  line-height: 3rem;\n  text-align: center;\n  vertical-align: middle;\n  display: inline-block; }\n  .step:not(.mobile):hover {\n    transform: scale(1, 1.2);\n    cursor: pointer;\n    background-color: #94ba06; }\n  .step.active {\n    background-color: #94ba06; }\n\n@media only screen and (min-width: 992px) {\n  .step:not(:last-child) {\n    border-right: 2px solid black; } }\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -543,7 +543,6 @@ Vue.component("steps-widget", {
       }
     },
     isActive: function isActive(index) {
-      console.log("called is active");
       return {
         active: this.activeIndex === index
       };
