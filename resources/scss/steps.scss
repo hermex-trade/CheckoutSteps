@@ -1,6 +1,7 @@
 .step {
-  background: gray;
+  background: black;
   font-size: 1.6rem;
+  color: white;
   line-height: 3rem;
   text-align: center;
   vertical-align: middle;
@@ -9,11 +10,11 @@
     &:hover {
       transform: scale(1.0, 1.2);
       cursor: pointer;
-      background-color: orange;
+      background-color: #94ba06;
     }
   }
   &.active {
-    background-color: orange;
+    background-color: #94ba06;
   }
 
 }

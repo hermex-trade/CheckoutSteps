@@ -52,7 +52,6 @@ Vue.component("steps-widget", {
             }
         },
         isActive: function(index) {
-            console.log("called is active")
             return {
                 active: this.activeIndex === index
             }
