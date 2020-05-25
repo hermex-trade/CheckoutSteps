@@ -21,6 +21,9 @@
       border-left: 1.5rem solid black;
       border-top: 1.5rem solid transparent;
       border-bottom: 1.5rem solid transparent;
+      &.active {
+        border-left: 1.5rem solid 94ba06;
+      }
     }
     &::after {
       content: "";
