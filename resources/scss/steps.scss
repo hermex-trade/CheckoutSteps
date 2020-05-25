@@ -6,17 +6,46 @@
   text-align: center;
   vertical-align: middle;
   display: inline-block;
+  position: relative;
+  margin-right: 30px;
+  padding: 0px 40px;
+  
   &:not(.mobile) {
+    &::before {
+      content: "";
+      position: absolute;
+      right: -1.5rem;
+      bottom: 0;
+      width: 0;
+      height: 0;
+      border-left: 1.5rem solid black;
+      border-top: 1.5rem solid transparent;
+      border-bottom: 1.5rem solid transparent;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 0;
+      border-left: 1.6rem solid white;
+      border-top: 1.6rem solid transparent;
+      border-bottom: 1.6rem solid transparent;
+    }
     &:hover {
-      transform: scale(1.0, 1.2);
+      transform: scale(1, 1.2);
       cursor: pointer;
       background-color: #94ba06;
+      &::before {
+         border-left: 1.5rem solid #94ba06;
+      }
     }
   }
+  
   &.active {
     background-color: #94ba06;
   }
-
 }
 
 @media only screen and (min-width: 992px) {
@@ -24,5 +53,5 @@
     &:not(:last-child) {
       border-right: 2px solid black;
     }
-  }  
+  }
 }
