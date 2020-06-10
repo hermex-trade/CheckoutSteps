@@ -20,6 +20,8 @@ class StepsWidget extends BaseWidget {
     {
         $steps = $widgetSettings["steps"]["mobile"];
         $containers = $widgetSettings["steps"]["children"]["mobile"];
+        $primaryColor = $widgetSettings["steps"]["children"]
+        $secondaryColor = 
 
         if (empty($steps) || empty($containers)) 
         {
@@ -57,6 +59,9 @@ class StepsWidget extends BaseWidget {
     {
         $settings = pluginApp(WidgetSettingsFactory::class);
 
+        container = $settings->createVerticalContainer("colors")
+            ->withName("Widget.colors")
+
         $container = $settings->createVerticalContainer("steps")
             ->withList(1)
             ->withName("Widget.stepsNewStepLabel");
@@ -64,6 +69,14 @@ class StepsWidget extends BaseWidget {
         $container->children->createText("title")
             ->withName("Widget.stepsNewStepInputName")
             ->withToolTip("Widget.stepsNewStepInputTooltip");
+
+        $container->children->createText("primary")
+            ->withName("Widget.primaryColorLabel")
+            ->withToolTip("Widget.primaryColorSelection");
+
+        $container->children->createText("secondary")
+            ->withName("Widget.primaryColorLabel")
+            ->withToolTip("Widget.primaryColorSelection");
 
         $container->children->createUUID("uuid");
 

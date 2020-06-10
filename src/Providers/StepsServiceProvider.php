@@ -16,10 +16,11 @@ class StepsServiceProvider extends ServiceProvider {
         
     }
 
-    public function boot(Twig $twig, Dispatcher $eventDispatcher)
+    public function boot(Twig $twig, Dispatcher $eventDispatcher, ConfigRepository $config)
     {
         $widgetRepository = pluginApp(ContentWidgetRepositoryContract::class);
         $widgetRepository->registerWidget(StepsWidget::class);
+        $config = 
 
         $eventDispatcher->listen('IO.Resources.Import', function (ResourceContainer $container)
         {
