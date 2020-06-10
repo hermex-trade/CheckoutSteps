@@ -1,0 +1,23 @@
+{
+    "formatVersion": 1.0,
+    "menu": {
+        "Widget.primaryColor": {
+            "label": "Widget.primaryColorLabel",
+            "formFields": {
+                "type": "colorPicker",
+                "required": true,
+                "label": "Config.primaryColorSelection"
+                }
+            }
+        },
+        "Widget.secondaryColor": {
+            "label": "Widget.secondaryColorLabel",
+            "formFields": {
+                "type": "colorPicker",
+                "required": true,
+                "label": "Config.secondaryColorSelection"
+                }
+            }
+        }
+    }
+}

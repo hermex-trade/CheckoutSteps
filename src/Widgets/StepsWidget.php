@@ -6,6 +6,10 @@ use Ceres\Widgets\Helper\BaseWidget;
 use Ceres\Widgets\Helper\Factories\WidgetDataFactory;
 use Ceres\Widgets\Helper\Factories\WidgetSettingsFactory;
 use Ceres\Widgets\Helper\WidgetTypes;
+use Plenty\Plugin\ConfigRepository;
+use IO\Services\TemplateConfigService;
+
+
 
 
 class StepsWidget extends BaseWidget {
