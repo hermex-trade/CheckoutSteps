@@ -6,10 +6,6 @@ use Ceres\Widgets\Helper\BaseWidget;
 use Ceres\Widgets\Helper\Factories\WidgetDataFactory;
 use Ceres\Widgets\Helper\Factories\WidgetSettingsFactory;
 use Ceres\Widgets\Helper\WidgetTypes;
-use Plenty\Plugin\ConfigRepository;
-use IO\Services\TemplateConfigService;
-
-
 
 
 class StepsWidget extends BaseWidget {
@@ -20,8 +16,7 @@ class StepsWidget extends BaseWidget {
     {
         $steps = $widgetSettings["steps"]["mobile"];
         $containers = $widgetSettings["steps"]["children"]["mobile"];
-        $primaryColor = $widgetSettings["steps"]["children"]
-        $secondaryColor = 
+        $colors = $widgetSettings["colors"]["children"]["mobile"];
 
         if (empty($steps) || empty($containers)) 
         {
@@ -35,7 +30,8 @@ class StepsWidget extends BaseWidget {
             return [
                 "steps_data" => [
                     "steps" => $steps,
-                    "containers" => $containers
+                    "containers" => $containers,
+                    "color" => $colors
                 ]
             ];
         }
@@ -58,9 +54,6 @@ class StepsWidget extends BaseWidget {
     public function getSettings() 
     {
         $settings = pluginApp(WidgetSettingsFactory::class);
-
-        container = $settings->createVerticalContainer("colors")
-            ->withName("Widget.colors")
 
         $container = $settings->createVerticalContainer("steps")
             ->withList(1)
