@@ -7,7 +7,6 @@
                 "type": "colorPicker",
                 "required": true,
                 "label": "Config.primaryColorSelection"
-                }
             }
         },
         "Widget.secondaryColor": {
@@ -16,8 +15,8 @@
                 "type": "colorPicker",
                 "required": true,
                 "label": "Config.secondaryColorSelection"
-                }
             }
         }
     }
 }
+    
