@@ -2,7 +2,7 @@ import "../scss/steps.scss";
 
 Vue.component("steps-widget", {
     delimiters: ["((", "))"],
-    props: ['steps'],
+    props: ['steps', 'primaryColor', 'secondaryColor'],
     component: ['step-content'],
     template: '<div>' +
         '<div v-if="!isMobile()" v-on class="step-list col-12">' +
@@ -34,11 +34,7 @@ Vue.component("steps-widget", {
             this.width = event.currentTarget.innerWidth
         },
         isMobile() {
-            if (this.width <= 768) {
-                return true;
-            } else {
-                return false;
-            }
+            return this.width <= 768;
         },
         next() {
             if (this.activeIndex !== this.steps.length - 1) {
