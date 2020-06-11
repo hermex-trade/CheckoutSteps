@@ -1,6 +1,5 @@
 .step {
-  background: var(--primary);
-  /* Use primary color here */
+  background: var(--primaryColor);
   font-size: 1.6rem;
   color: white;
   line-height: 3rem;
@@ -18,7 +17,7 @@
   bottom: 0;
   width: 0;
   height: 0;
-  border-left: 1.5rem solid var(--primary);
+  border-left: 1.5rem solid var(--primaryColor);
   border-top: 1.5rem solid transparent;
   border-bottom: 1.5rem solid transparent;
 }
@@ -36,20 +35,16 @@
 .step:not(.mobile):hover {
   transform: scale(1, 1.2);
   cursor: pointer;
-  background-color: var(--secondary);
-  /* Use secondary color here */
+  background-color: var(--secondaryColor);
 }
 .step:not(.mobile):hover::before {
-  border-left: 1.5rem solid var(--secondary);
-  /* Use secondary color here */
+  border-left: 1.5rem solid var(--secondaryColor);
 }
 .step.active {
-  background-color: var(--secondary);
-  /* Use secondary color here */
+  background-color: var(--secondaryColor);
 }
 .step.active::before {
-  border-left: 1.5rem solid var(--secondary);
-  /* Use secondary color here */
+  border-left: 1.5rem solid var(--secondaryColor);
 }
 
 /*# sourceMappingURL=steps.css.map */

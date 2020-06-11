@@ -4,7 +4,7 @@ Vue.component("steps-widget", {
     delimiters: ["((", "))"],
     props: ['steps', 'primaryColor', 'secondaryColor'],
     component: ['step-content'],
-    template: '<div>' +
+    template: '<div :style="cssVars">' +
         '<div v-if="!isMobile()" v-on class="step-list col-12">' +
             '<h1 class="step col-lg-3" v-for="(step, index) in steps" @click="setActive(index, $event)" :class="isActive(index)">((step.title))</h1>' +
         '</div>' + 
@@ -28,6 +28,14 @@ Vue.component("steps-widget", {
     }, 
     beforeDestroy: function() {
         window.addEventListener('resize', this.handleResize)
+    },
+    computed: {
+        cssVars() {
+            return {
+                '--primaryColor': this.primaryColor,
+                '--secondaryColor': this.secondaryColor,
+            }
+        }
     },
     methods: {
         handleResize(event) {
