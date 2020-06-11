@@ -62,10 +62,12 @@ class StepsWidget extends BaseWidget {
 
         $colors->children->createColor("primary")
             ->withName("Widget.primaryColorLabel")
+            ->withDefaultValue("#000000")
             ->withToolTip("Widget.primaryColorTooltip");
 
         $colors->children->createColor("secondary")
             ->withName("Widget.secondaryColorLabel")
+            ->withDefaultValue("#94ba06")
             ->withToolTip("Widget.secondaryColorTooltip");
 
         $container = $settings->createVerticalContainer("steps")
