@@ -16,6 +16,7 @@ class StepsWidget extends BaseWidget {
     {
         $steps = $widgetSettings["steps"]["mobile"];
         $containers = $widgetSettings["steps"]["children"]["mobile"];
+        $colors = $widgetSettings["colors"]["children"]["mobile"];
 
         if (empty($steps) || empty($containers)) 
         {
@@ -24,12 +25,13 @@ class StepsWidget extends BaseWidget {
             ];
         }
 
-        if ($steps && $containers) 
+        if ($steps && $containers)
         {
             return [
                 "steps_data" => [
                     "steps" => $steps,
                     "containers" => $containers,
+                    "colors" => $colors,
                 ]
             ];
         }
@@ -68,7 +70,7 @@ class StepsWidget extends BaseWidget {
 
         $container = $settings->createVerticalContainer("steps")
             ->withList(1)
-            ->withName("Widget.stepsNewStepLabel");
+            ->withName("Widget.stepsLabel");
 
         $container->children->createText("title")
             ->withName("Widget.stepsNewStepInputName")
