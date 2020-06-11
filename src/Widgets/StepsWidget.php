@@ -53,6 +53,9 @@ class StepsWidget extends BaseWidget {
     {
         $settings = pluginApp(WidgetSettingsFactory::class);
 
+        $settings->createCustomClass();
+        $settings->createAppearance();
+
         $container = $settings->createVerticalContainer("steps")
             ->withList(1)
             ->withName("Widget.stepsNewStepLabel");
@@ -60,19 +63,6 @@ class StepsWidget extends BaseWidget {
         $container->children->createText("title")
             ->withName("Widget.stepsNewStepInputName")
             ->withToolTip("Widget.stepsNewStepInputTooltip");
-
-
-        $settings->createVerticalContainer("colors")
-            ->withList(1)
-            ->withName("Widget.colors");
-
-        $container->children->createText("primary")
-            ->withName("Widget.primaryColorLabel")
-            ->withToolTip("Widget.primaryColorSelection");
-
-        $container->children->createText("secondary")
-            ->withName("Widget.primaryColorLabel")
-            ->withToolTip("Widget.primaryColorSelection");
 
         $container->children->createUUID("uuid");
 
