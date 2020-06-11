@@ -1,14 +1,14 @@
 .step {
-  background: black;
+  background: black;  /* Use primary color here */
   font-size: 1.6rem;
-  color: white;
+  color: white;       /* Use primary color here */
   line-height: 3rem;
   text-align: center;
   vertical-align: middle;
   display: inline-block;
   position: relative;
   margin-right: 20px;
-  padding: 0px 30px;
+  padding: 0 30px;
   
   &:not(.mobile) {
     &::before {
@@ -29,24 +29,24 @@
       bottom: 0;
       width: 0;
       height: 0;
-      border-left: 1.6rem solid #f7f7f9;
+      border-left: 1.6rem solid #f7f7f9; /* Use primary color here */
       border-top: 1.6rem solid transparent;
       border-bottom: 1.6rem solid transparent;
     }
     &:hover {
       transform: scale(1, 1.2);
       cursor: pointer;
-      background-color: #94ba06;
+      background-color: #94ba06; /* Use secondary color here */
       &::before {
-         border-left: 1.5rem solid #94ba06;
+         border-left: 1.5rem solid #94ba06; /* Use secondary color here */
       }
     }
   }
   
   &.active {
-    background-color: #94ba06;
+    background-color: #94ba06; /* Use secondary color here */
     &::before {
-      border-left: 1.5rem solid #94ba06;
+      border-left: 1.5rem solid #94ba06; /* Use secondary color here */
     }
   }
 }

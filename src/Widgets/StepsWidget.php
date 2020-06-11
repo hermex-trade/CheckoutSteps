@@ -69,8 +69,8 @@ class StepsWidget extends BaseWidget {
             ->withToolTip("Widget.secondaryColorTooltip");
 
         $container = $settings->createVerticalContainer("steps")
-            ->withList(1)
-            ->withName("Widget.stepsLabel");
+            ->withName("Widget.stepsLabel")
+            ->withList(1);
 
         $container->children->createText("title")
             ->withName("Widget.stepsNewStepInputName")
