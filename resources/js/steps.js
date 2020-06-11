@@ -1,4 +1,4 @@
-import "../scss/steps.scss"
+import "../scss/steps.scss";
 
 Vue.component("steps-widget", {
     delimiters: ["((", "))"],

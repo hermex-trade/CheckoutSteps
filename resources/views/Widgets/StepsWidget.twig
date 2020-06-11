@@ -1,4 +1,9 @@
 {% set steps_data = widget.settings.steps.mobile %}
+{% set primaryColor = widget.settings.colors.primary.mobile %}
+{% set secondaryColor = widget.settings.colors.secondary.mobile %}
+
+<p>Primary color is: {{ primaryColor }}</p>
+<p>Primary color is: {{ secondaryColor }}</p>
 
 {% if steps_data is not empty %}
     {% if isPreview %}
