@@ -505,7 +505,7 @@ Vue.component("steps-widget", {
   delimiters: ["((", "))"],
   props: ['steps', 'primaryColor', 'secondaryColor'],
   component: ['step-content'],
-  template: '<div :style="cssVars">' + '<div v-if="!isMobile()" class="step-list col-12">' + '<h1 class="step col-lg-3" v-for="(step, index) in steps" @click="setActive(index, $event)" :class="isActive(index)">((step.title))</h1>' + '</div>' + '<div v-else class="step-list col-12">' + '<h1 v-if="activeIndex === index" class="step mobile col-lg-12" v-for="(step, index) in steps" @click="setActive(index, $event)" :class="isActive(index)">((step.title))</h1>' + '</div>' + '<slot></slot>' + '<div class="text-right">' + '<button v-if="activeIndex !== 0" class="col-3 btn btn-primary mr-1" @click="prev">Zurück</button>' + '<button v-if="activeIndex !== steps.length - 1" class="col-3 btn btn-primary" @click="next">Weiter</button>' + '</div>' + '</div>',
+  template: '<div>' + '<div :style="cssVars">' + '<div v-if="!isMobile()" class="step-list col-12">' + '<h1 class="step col-lg-3" v-for="(step, index) in steps" @click="setActive(index, $event)" :class="isActive(index)">((step.title))</h1>' + '</div>' + '<div v-else class="step-list col-12">' + '<h1 v-if="activeIndex === index" class="step mobile col-lg-12" v-for="(step, index) in steps" @click="setActive(index, $event)" :class="isActive(index)">((step.title))</h1>' + '</div>' + '<slot></slot>' + '<div class="text-right">' + '<button v-if="activeIndex !== 0" class="col-3 btn btn-primary mr-1" @click="prev">Zurück</button>' + '<button v-if="activeIndex !== steps.length - 1" class="col-3 btn btn-primary" @click="next">Weiter</button>' + '</div>' + '</div>' + '</div>',
   data: function data() {
     return {
       'activeIndex': 0,
