@@ -54,7 +54,17 @@ class StepsWidget extends BaseWidget {
         $settings = pluginApp(WidgetSettingsFactory::class);
 
         $settings->createCustomClass();
-        $settings->createAppearance();
+
+        $colors = $settings->createVerticalContainer("colors")
+            ->withName("Widget.colorsLabel");
+
+        $colors->children->createColor("primary")
+            ->withName("Widget.primaryColorLabel")
+            ->withToolTip("Widget.primaryColorTooltip");
+
+        $colors->children->createColor("secondary")
+            ->withName("Widget.secondaryColorLabel")
+            ->withToolTip("Widget.secondaryColorTooltip");
 
         $container = $settings->createVerticalContainer("steps")
             ->withList(1)
