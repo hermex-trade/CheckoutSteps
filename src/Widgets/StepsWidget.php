@@ -16,6 +16,7 @@ class StepsWidget extends BaseWidget {
     {
         $steps = $widgetSettings["steps"]["mobile"];
         $colors = $widgetSettings["colors"]["mobile"];
+        $containers = $widgetSettings["steps"]["children"]["mobile"];
 
         if (empty($steps) || empty($containers)) 
         {
