@@ -11,7 +11,7 @@ Vue.component("steps-widget", {
         'stepsBackgroundColor'
     ],
     component: ['step-content'],
-    template: '<div>' +
+    template: '<div :style="cssVars">' +
         '<div v-if="!isMobile()" class="step-list col-12">' +
             '<h1 class="step col-lg-3" v-for="(step, index) in steps" @click="setActive(index, $event)" :class="isActive(index)">((step.title))</h1>' +
         '</div>' +
