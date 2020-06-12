@@ -1,3 +1,6 @@
+{{ steps_data }}
+    {{ steps_data|raw }}
+    {{ steps_data|json_encode }}
 {% if steps_data is not empty %}
     {% if isPreview %}
         <div>
