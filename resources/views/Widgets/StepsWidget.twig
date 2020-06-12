@@ -1,4 +1,5 @@
-{{ steps_data | json_encode }}
+{% set steps_data = widget.settings.steps.mobile %}
+
 {% if steps_data is not empty %}
     {% if isPreview %}
         <div>

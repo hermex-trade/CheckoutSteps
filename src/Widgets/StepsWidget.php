@@ -14,18 +14,17 @@ class StepsWidget extends BaseWidget {
 
     protected function getTemplateData($widgetSettings, $isPreview) 
     {
-        $steps = $widgetSettings["steps"]["children"]["mobile"];
-        $colors = $widgetSettings["colors"]["children"]["mobile"];
-        $containers = $widgetSettings["steps"]["children"]["mobile"];
+        $steps = $widgetSettings["steps"]["mobile"];
+        $colors = $widgetSettings["colors"]["mobile"];
 
-        if (empty($steps) || empty($containers)) 
+        if (empty($steps) || empty($colors))
         {
             return [
                 "steps_data" => false
             ];
         }
 
-        if ($steps && $containers)
+        if ($steps && $colors)
         {
             return [
                 "steps_data" => [
