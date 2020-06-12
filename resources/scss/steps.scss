@@ -2,7 +2,7 @@ $primary: var(--primaryColor);
 $secondary: var(--secondaryColor);
 $primaryText: var(--primaryTextColor);
 $secondaryText: var(--secondaryTextColor);
-$backgroundColor: var(--backgroundColor);
+$backgroundColor: var(--stepsBackgroundColor);
 
 .step {
   background: $primary;
@@ -34,7 +34,7 @@ $backgroundColor: var(--backgroundColor);
       bottom: 0;
       width: 0;
       height: 0;
-      border-left: 1.6rem solid #f7f7f9;
+      border-left: 1.6rem solid $backgroundColor;
       border-top: 1.6rem solid transparent;
       border-bottom: 1.6rem solid transparent;
     }

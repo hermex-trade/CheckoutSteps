@@ -2,7 +2,14 @@ import "../scss/steps.scss";
 
 Vue.component("steps-widget", {
     delimiters: ["((", "))"],
-    props: ['steps', 'cssStyle'],
+    props: [
+        'steps',
+        'primaryColor',
+        'secondaryColor',
+        'primaryTextColor',
+        'secondaryTextColor',
+        'stepsBackgroundColor'
+    ],
     component: ['step-content'],
     template: '<div>' +
         '<div v-if="!isMobile()" class="step-list col-12">' +
@@ -32,10 +39,11 @@ Vue.component("steps-widget", {
     computed: {
         cssVars() {
             return {
-                '--primaryColor': cssStyle.primary,
-                '--secondaryColor': cssStyle.secondary,
-                '--primaryTextColor': cssStyle.primaryText,
-                '--secondaryTextColor': cssStyle.secondaryText,
+                '--primaryColor': primaryColor,
+                '--secondaryColor': secondaryColor,
+                '--primaryTextColor': primaryTextColor,
+                '--secondaryTextColor': secondaryTextColor,
+                '--stepsBackgroundColor': stepsBackgroundColor,
             }
         },
         styles() {
