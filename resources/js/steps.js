@@ -39,18 +39,13 @@ Vue.component("steps-widget", {
     computed: {
         cssVars() {
             return {
-                '--primaryColor': primaryColor,
-                '--secondaryColor': secondaryColor,
-                '--primaryTextColor': primaryTextColor,
-                '--secondaryTextColor': secondaryTextColor,
-                '--stepsBackgroundColor': stepsBackgroundColor,
+                '--primaryColor': this.primaryColor,
+                '--secondaryColor': this.secondaryColor,
+                '--primaryTextColor': this.primaryTextColor,
+                '--secondaryTextColor': this.secondaryTextColor,
+                '--stepsBackgroundColor': this.stepsBackgroundColor,
             }
         },
-        styles() {
-            return {
-                cssStyle
-            }
-        }
     },
     methods: {
         handleResize(event) {
