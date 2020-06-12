@@ -1,10 +1,12 @@
 $primary: var(--primaryColor);
 $secondary: var(--secondaryColor);
+$primaryText: var(--primaryTextColor);
+$secondaryText: var(--secondaryTextColor);
 
 .step {
   background: $primary;
   font-size: 1.6rem;
-  color: white;
+  color: $primaryText;
   line-height: 3rem;
   text-align: center;
   vertical-align: middle;
@@ -39,6 +41,7 @@ $secondary: var(--secondaryColor);
       transform: scale(1, 1.2);
       cursor: pointer;
       background-color: $secondary;
+      color: $secondaryText;
       &::before {
          border-left: 1.5rem solid $secondary;
       }
@@ -46,6 +49,7 @@ $secondary: var(--secondaryColor);
   }
   &.active {
     background-color: $secondary;
+    color: $secondaryText;
     &::before {
       border-left: 1.5rem solid $secondary;
     }

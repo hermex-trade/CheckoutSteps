@@ -77,10 +77,21 @@ class StepsWidget extends BaseWidget {
             ->withDefaultValue("#000000")
             ->withToolTip("Widget.primaryColorTooltip");
 
+        $colors->children->createColor("primaryText")
+            ->withName("Widget.primaryTextColorLabel")
+            ->withDefaultValue("#ffffff")
+            ->withToolTip("Widget.primaryTextColorTooltip");
+
         $colors->children->createColor("secondary")
             ->withName("Widget.secondaryColorLabel")
             ->withDefaultValue("#cccccc")
             ->withToolTip("Widget.secondaryColorTooltip");
+
+
+        $colors->children->createColor("secondaryText")
+            ->withName("Widget.secondaryTextColorLabel")
+            ->withDefaultValue("#ffffff")
+            ->withToolTip("Widget.secondaryTextColorTooltip");
     }
 
     /**

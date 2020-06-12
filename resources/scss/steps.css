@@ -1,7 +1,7 @@
 .step {
   background: var(--primaryColor);
   font-size: 1.6rem;
-  color: white;
+  color: var(--primaryTextColor);
   line-height: 3rem;
   text-align: center;
   vertical-align: middle;
@@ -36,12 +36,14 @@
   transform: scale(1, 1.2);
   cursor: pointer;
   background-color: var(--secondaryColor);
+  color: var(--secondaryTextColor);
 }
 .step:not(.mobile):hover::before {
   border-left: 1.5rem solid var(--secondaryColor);
 }
 .step.active {
   background-color: var(--secondaryColor);
+  color: var(--secondaryTextColor);
 }
 .step.active::before {
   border-left: 1.5rem solid var(--secondaryColor);
