@@ -14,7 +14,7 @@
         </div>
     {% else %}
         <div class="step-widget">
-            <steps-widget :steps="{{steps_data|json_encode}}" :primaryColor="{{ primaryColor|json_encode }}" :secondaryColor="{{ secondaryColor|json_encode }}">
+            <steps-widget :steps="{{steps_data|json_encode}}" :primaryColor="{{ primaryColor }}" :secondaryColor="{{ secondaryColor }}">
                 {% for step in steps_data %}
                     <step-content :index="{{ loop.index0 }}">
                         <div class="my-4" data-builder-child-container="{{step.uuid}}">{{ children[step.uuid] | raw }}</div>
