@@ -14,8 +14,8 @@ class StepsWidget extends BaseWidget {
 
     protected function getTemplateData($widgetSettings, $isPreview) 
     {
-        $steps = $widgetSettings["steps"]["mobile"];
-        $colors = $widgetSettings["colors"]["mobile"];
+        $steps = $widgetSettings["steps"]["children"]["mobile"];
+        $colors = $widgetSettings["colors"]["children"]["mobile"];
         $containers = $widgetSettings["steps"]["children"]["mobile"];
 
         if (empty($steps) || empty($containers)) 
@@ -55,9 +55,7 @@ class StepsWidget extends BaseWidget {
         $settings = pluginApp(WidgetSettingsFactory::class);
 
         $settings->createCustomClass();
-
         $this->create_color_settings($settings);
-
         $this->create_step_settings($settings);
 
         return $settings->toArray();
@@ -90,6 +88,11 @@ class StepsWidget extends BaseWidget {
             ->withName("Widget.secondaryTextColorLabel")
             ->withDefaultValue("#ffffff")
             ->withToolTip("Widget.secondaryTextColorTooltip");
+
+        $colors->children->createColor("stepsBackgroundColor")
+            ->withName("Widget.stepsBackgroundColorLabel")
+            ->withDefaultValue("#ffffff")
+            ->withToolTip("Widget.stepsBackgroundColorTooltip");
     }
 
     /**
