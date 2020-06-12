@@ -521,16 +521,11 @@ Vue.component("steps-widget", {
   computed: {
     cssVars: function cssVars() {
       return {
-        '--primaryColor': primaryColor,
-        '--secondaryColor': secondaryColor,
-        '--primaryTextColor': primaryTextColor,
-        '--secondaryTextColor': secondaryTextColor,
-        '--stepsBackgroundColor': stepsBackgroundColor
-      };
-    },
-    styles: function styles() {
-      return {
-        cssStyle: cssStyle
+        '--primaryColor': this.primaryColor,
+        '--secondaryColor': this.secondaryColor,
+        '--primaryTextColor': this.primaryTextColor,
+        '--secondaryTextColor': this.secondaryTextColor,
+        '--stepsBackgroundColor': this.stepsBackgroundColor
       };
     }
   },
