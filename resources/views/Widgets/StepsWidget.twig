@@ -1,9 +1,5 @@
 {% set steps_data = widget.settings.steps.mobile %}
 {% set colors = widget.settings.colors.mobile %}
-{% set primary = widget.settings.colors.primary.mobile %}
-
-{{ colors|json_encode }}
-{{ primary|json_encode }}
 
 {% if steps_data is not empty %}
     {% if isPreview %}
@@ -15,7 +11,9 @@
         </div>
     {% else %}
         <div class="step-widget">
-            <steps-widget :steps="{{steps_data|json_encode}}" :css-colors="{{ colors|json_encode }}">
+            <steps-widget
+                    :steps="{{steps_data|json_encode}}"
+                    :css-colors="{{ colors|json_encode }}">
                 {% for step in steps_data %}
                     <step-content :index="{{ loop.index0 }}">
                         <div class="my-4" data-builder-child-container="{{step.uuid}}">{{ children[step.uuid] | raw }}</div>
