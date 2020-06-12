@@ -3,9 +3,11 @@
 
 {% if steps is not empty %}
     {% if isPreview %}
-        {{ steps | json_encode}}
-        {{ colors | json_encode}}
         <div>
+            {{ steps | json_encode}}
+            {{ colors | json_encode}}
+            {{ colors.primary | json_encode}}
+            {{ colors.secondary | json_encode}}
             {% for step in steps %}
                 <h1>{{step.title}}</h1>
                 <div class="my-4" data-builder-child-container="{{step.uuid}}">{{ children[step.uuid] | raw }}</div>
@@ -15,7 +17,7 @@
         <div class="step-widget">
             <steps-widget
                     :steps="{{steps|json_encode}}"
-                    :css-style="{{colors|json_encode}}">
+                    :css-style="{{colors}}">
                 {% for step in steps_data.steps %}
                     <step-content :index="{{ loop.index0 }}">
                         <div class="my-4" data-builder-child-container="{{step.uuid}}">{{ children[step.uuid] | raw }}</div>
