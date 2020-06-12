@@ -503,7 +503,7 @@ __webpack_require__.r(__webpack_exports__);
 
 Vue.component("steps-widget", {
   delimiters: ["((", "))"],
-  props: ['steps', 'cssColors'],
+  props: ['steps', 'cssStyle'],
   component: ['step-content'],
   template: '<div>' + '<div v-if="!isMobile()" class="step-list col-12">' + '<h1 class="step col-lg-3" v-for="(step, index) in steps" @click="setActive(index, $event)" :class="isActive(index)">((step.title))</h1>' + '</div>' + '<div v-else class="step-list col-12">' + '<h1 v-if="activeIndex === index" class="step mobile col-lg-12" v-for="(step, index) in steps" @click="setActive(index, $event)" :class="isActive(index)">((step.title))</h1>' + '</div>' + '<slot></slot>' + '<div class="text-right">' + '<button v-if="activeIndex !== 0" class="col-3 btn btn-primary mr-1" @click="prev">Zurück</button>' + '<button v-if="activeIndex !== steps.length - 1" class="col-3 btn btn-primary" @click="next">Weiter</button>' + '</div>' + '</div>',
   data: function data() {
@@ -521,10 +521,15 @@ Vue.component("steps-widget", {
   computed: {
     cssVars: function cssVars() {
       return {
-        '--primaryColor': this.cssColors.primary,
-        '--secondaryColor': this.cssColors.secondary,
-        '--primaryTextColor': this.cssColors.primaryText,
-        '--secondaryTextColor': this.cssColors.secondaryText
+        '--primaryColor': cssStyle.primary,
+        '--secondaryColor': cssStyle.secondary,
+        '--primaryTextColor': cssStyle.primaryText,
+        '--secondaryTextColor': cssStyle.secondaryText
+      };
+    },
+    styles: function styles() {
+      return {
+        cssStyle: cssStyle
       };
     }
   },

@@ -15,7 +15,6 @@ class StepsWidget extends BaseWidget {
     protected function getTemplateData($widgetSettings, $isPreview) 
     {
         $steps = $widgetSettings["steps"]["mobile"];
-        $containers = $widgetSettings["steps"]["children"]["mobile"];
         $colors = $widgetSettings["colors"]["mobile"];
 
         if (empty($steps) || empty($containers)) 
@@ -30,7 +29,6 @@ class StepsWidget extends BaseWidget {
             return [
                 "steps_data" => [
                     "steps" => $steps,
-                    "containers" => $containers,
                     "colors" => $colors,
                 ]
             ];
