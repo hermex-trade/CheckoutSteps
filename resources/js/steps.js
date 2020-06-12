@@ -2,15 +2,15 @@ import "../scss/steps.scss";
 
 Vue.component("steps-widget", {
     delimiters: ["((", "))"],
-    props: ['steps'],
+    props: ['steps', 'primaryColor', 'secondaryColor'],
     component: ['step-content'],
     template: '<div>' +
-        '<div v-if="!isMobile()" v-on class="step-list col-12">' +
+        '<div v-if="!isMobile()" class="step-list col-12">' +
             '<h1 class="step col-lg-3" v-for="(step, index) in steps" @click="setActive(index, $event)" :class="isActive(index)">((step.title))</h1>' +
-        '</div>' + 
+        '</div>' +
         '<div v-else class="step-list col-12">' +
             '<h1 v-if="activeIndex === index" class="step mobile col-lg-12" v-for="(step, index) in steps" @click="setActive(index, $event)" :class="isActive(index)">((step.title))</h1>' +
-        '</div>' + 
+        '</div>' +
         '<slot></slot>' +
         '<div class="text-right">' +
             '<button v-if="activeIndex !== 0" class="col-3 btn btn-primary mr-1" @click="prev">Zurück</button>' +
@@ -29,16 +29,20 @@ Vue.component("steps-widget", {
     beforeDestroy: function() {
         window.addEventListener('resize', this.handleResize)
     },
+    computed: {
+        cssVars() {
+            return {
+                '--primaryColor': this.primaryColor,
+                '--secondaryColor': this.secondaryColor,
+            }
+        }
+    },
     methods: {
         handleResize(event) {
             this.width = event.currentTarget.innerWidth
         },
         isMobile() {
-            if (this.width <= 768) {
-                return true;
-            } else {
-                return false;
-            }
+            return this.width <= 768;
         },
         next() {
             if (this.activeIndex !== this.steps.length - 1) {

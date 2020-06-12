@@ -1,7 +1,10 @@
+$primary: var(--primaryColor);
+$secondary: var(--secondaryColor);
+
 .step {
-  background: black;  /* Use primary color here */
+  background: $primary;
   font-size: 1.6rem;
-  color: white;       /* Use primary color here */
+  color: white;
   line-height: 3rem;
   text-align: center;
   vertical-align: middle;
@@ -9,7 +12,6 @@
   position: relative;
   margin-right: 20px;
   padding: 0 30px;
-  
   &:not(.mobile) {
     &::before {
       content: "";
@@ -18,7 +20,7 @@
       bottom: 0;
       width: 0;
       height: 0;
-      border-left: 1.5rem solid black;
+      border-left: 1.5rem solid $primary;
       border-top: 1.5rem solid transparent;
       border-bottom: 1.5rem solid transparent;
     }
@@ -29,24 +31,23 @@
       bottom: 0;
       width: 0;
       height: 0;
-      border-left: 1.6rem solid #f7f7f9; /* Use primary color here */
+      border-left: 1.6rem solid #f7f7f9;
       border-top: 1.6rem solid transparent;
       border-bottom: 1.6rem solid transparent;
     }
     &:hover {
       transform: scale(1, 1.2);
       cursor: pointer;
-      background-color: #94ba06; /* Use secondary color here */
+      background-color: $secondary;
       &::before {
-         border-left: 1.5rem solid #94ba06; /* Use secondary color here */
+         border-left: 1.5rem solid $secondary;
       }
     }
   }
-  
   &.active {
-    background-color: #94ba06; /* Use secondary color here */
+    background-color: $secondary;
     &::before {
-      border-left: 1.5rem solid #94ba06; /* Use secondary color here */
+      border-left: 1.5rem solid $secondary;
     }
   }
 }

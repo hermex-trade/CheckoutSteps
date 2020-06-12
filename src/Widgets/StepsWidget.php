@@ -57,17 +57,37 @@ class StepsWidget extends BaseWidget {
 
         $settings->createCustomClass();
 
+        $this->create_color_settings($settings);
+
+        $this->create_step_settings($settings);
+
+        return $settings->toArray();
+    }
+
+    /**
+     * @param $settings
+     */
+    private function create_color_settings($settings): void
+    {
         $colors = $settings->createVerticalContainer("colors")
             ->withName("Widget.colorsLabel");
 
         $colors->children->createColor("primary")
             ->withName("Widget.primaryColorLabel")
+            ->withDefaultValue("#000000")
             ->withToolTip("Widget.primaryColorTooltip");
 
         $colors->children->createColor("secondary")
             ->withName("Widget.secondaryColorLabel")
+            ->withDefaultValue("#cccccc")
             ->withToolTip("Widget.secondaryColorTooltip");
+    }
 
+    /**
+     * @param $settings
+     */
+    private function create_step_settings($settings): void
+    {
         $container = $settings->createVerticalContainer("steps")
             ->withName("Widget.stepsLabel")
             ->withList(1);
@@ -77,8 +97,6 @@ class StepsWidget extends BaseWidget {
             ->withToolTip("Widget.stepsNewStepInputTooltip");
 
         $container->children->createUUID("uuid");
-
-        return $settings->toArray();
     }
 
 }

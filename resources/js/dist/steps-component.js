@@ -97,7 +97,7 @@
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, ".step {\n  background: black;\n  font-size: 1.6rem;\n  color: white;\n  line-height: 3rem;\n  text-align: center;\n  vertical-align: middle;\n  display: inline-block;\n  position: relative;\n  margin-right: 20px;\n  padding: 0px 30px; }\n  .step:not(.mobile)::before {\n    content: \"\";\n    position: absolute;\n    right: -1.5rem;\n    bottom: 0;\n    width: 0;\n    height: 0;\n    border-left: 1.5rem solid black;\n    border-top: 1.5rem solid transparent;\n    border-bottom: 1.5rem solid transparent; }\n  .step:not(.mobile)::after {\n    content: \"\";\n    position: absolute;\n    left: 0;\n    bottom: 0;\n    width: 0;\n    height: 0;\n    border-left: 1.6rem solid #f7f7f9;\n    border-top: 1.6rem solid transparent;\n    border-bottom: 1.6rem solid transparent; }\n  .step:not(.mobile):hover {\n    transform: scale(1, 1.2);\n    cursor: pointer;\n    background-color: #94ba06; }\n    .step:not(.mobile):hover::before {\n      border-left: 1.5rem solid #94ba06; }\n  .step.active {\n    background-color: #94ba06; }\n    .step.active::before {\n      border-left: 1.5rem solid #94ba06; }\n", ""]);
+exports.push([module.i, ".step {\n  background: var(--primaryColor);\n  font-size: 1.6rem;\n  color: white;\n  line-height: 3rem;\n  text-align: center;\n  vertical-align: middle;\n  display: inline-block;\n  position: relative;\n  margin-right: 20px;\n  padding: 0 30px; }\n  .step:not(.mobile)::before {\n    content: \"\";\n    position: absolute;\n    right: -1.5rem;\n    bottom: 0;\n    width: 0;\n    height: 0;\n    border-left: 1.5rem solid var(--primaryColor);\n    border-top: 1.5rem solid transparent;\n    border-bottom: 1.5rem solid transparent; }\n  .step:not(.mobile)::after {\n    content: \"\";\n    position: absolute;\n    left: 0;\n    bottom: 0;\n    width: 0;\n    height: 0;\n    border-left: 1.6rem solid #f7f7f9;\n    border-top: 1.6rem solid transparent;\n    border-bottom: 1.6rem solid transparent; }\n  .step:not(.mobile):hover {\n    transform: scale(1, 1.2);\n    cursor: pointer;\n    background-color: var(--secondaryColor); }\n    .step:not(.mobile):hover::before {\n      border-left: 1.5rem solid var(--secondaryColor); }\n  .step.active {\n    background-color: var(--secondaryColor); }\n    .step.active::before {\n      border-left: 1.5rem solid var(--secondaryColor); }\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -503,9 +503,9 @@ __webpack_require__.r(__webpack_exports__);
 
 Vue.component("steps-widget", {
   delimiters: ["((", "))"],
-  props: ['steps'],
+  props: ['steps', 'primaryColor', 'secondaryColor'],
   component: ['step-content'],
-  template: '<div>' + '<div v-if="!isMobile()" v-on class="step-list col-12">' + '<h1 class="step col-lg-3" v-for="(step, index) in steps" @click="setActive(index, $event)" :class="isActive(index)">((step.title))</h1>' + '</div>' + '<div v-else class="step-list col-12">' + '<h1 v-if="activeIndex === index" class="step mobile col-lg-12" v-for="(step, index) in steps" @click="setActive(index, $event)" :class="isActive(index)">((step.title))</h1>' + '</div>' + '<slot></slot>' + '<div class="text-right">' + '<button v-if="activeIndex !== 0" class="col-3 btn btn-primary mr-1" @click="prev">Zurück</button>' + '<button v-if="activeIndex !== steps.length - 1" class="col-3 btn btn-primary" @click="next">Weiter</button>' + '</div>' + '</div>',
+  template: '<div>' + '<div v-if="!isMobile()" class="step-list col-12">' + '<h1 class="step col-lg-3" v-for="(step, index) in steps" @click="setActive(index, $event)" :class="isActive(index)">((step.title))</h1>' + '</div>' + '<div v-else class="step-list col-12">' + '<h1 v-if="activeIndex === index" class="step mobile col-lg-12" v-for="(step, index) in steps" @click="setActive(index, $event)" :class="isActive(index)">((step.title))</h1>' + '</div>' + '<slot></slot>' + '<div class="text-right">' + '<button v-if="activeIndex !== 0" class="col-3 btn btn-primary mr-1" @click="prev">Zurück</button>' + '<button v-if="activeIndex !== steps.length - 1" class="col-3 btn btn-primary" @click="next">Weiter</button>' + '</div>' + '</div>',
   data: function data() {
     return {
       'activeIndex': 0,
@@ -518,16 +518,20 @@ Vue.component("steps-widget", {
   beforeDestroy: function beforeDestroy() {
     window.addEventListener('resize', this.handleResize);
   },
+  computed: {
+    cssVars: function cssVars() {
+      return {
+        '--primaryColor': this.primaryColor,
+        '--secondaryColor': this.secondaryColor
+      };
+    }
+  },
   methods: {
     handleResize: function handleResize(event) {
       this.width = event.currentTarget.innerWidth;
     },
     isMobile: function isMobile() {
-      if (this.width <= 768) {
-        return true;
-      } else {
-        return false;
-      }
+      return this.width <= 768;
     },
     next: function next() {
       if (this.activeIndex !== this.steps.length - 1) {
