@@ -1,6 +1,9 @@
 {% set steps_data = widget.settings.steps.mobile %}
 {% set colors = widget.settings.colors.mobile %}
 
+{{ colors|json_encode }}
+{{ colors|raw }}
+
 {% if steps_data is not empty %}
     {% if isPreview %}
         <div>
