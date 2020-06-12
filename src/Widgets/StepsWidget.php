@@ -16,7 +16,7 @@ class StepsWidget extends BaseWidget {
     {
         $steps = $widgetSettings["steps"]["mobile"];
         $containers = $widgetSettings["steps"]["children"]["mobile"];
-        $colors = $widgetSettings["colors"]["children"]["mobile"];
+        $colors = $widgetSettings["colors"]["mobile"];
 
         if (empty($steps) || empty($containers)) 
         {
@@ -86,7 +86,6 @@ class StepsWidget extends BaseWidget {
             ->withName("Widget.secondaryColorLabel")
             ->withDefaultValue("#cccccc")
             ->withToolTip("Widget.secondaryColorTooltip");
-
 
         $colors->children->createColor("secondaryText")
             ->withName("Widget.secondaryTextColorLabel")
