@@ -2,12 +2,11 @@
 {% set primaryColor = widget.settings.colors.primary.mobile %}
 {% set secondaryColor = widget.settings.colors.secondary.mobile %}
 
-<p>Primary color is: {{ primaryColor }}</p>
-<p>Primary color is: {{ secondaryColor }}</p>
-
 {% if steps_data is not empty %}
     {% if isPreview %}
         <div>
+            <p>Primary color is: {{ primaryColor }}</p>
+            <p>Primary color is: {{ secondaryColor }}</p>
             {% for step in steps_data %}
                 <h1>{{step.title}}</h1>
                 <div class="my-4" data-builder-child-container="{{step.uuid}}">{{ children[step.uuid] | raw }}</div>
